@@ -27,6 +27,11 @@ def run_game():
         # 每次循环时都重绘屏幕
         # 让最近绘制的屏幕可见
         gf.update_screen(ai_settings, screen, ship, bullets)
+       
 
+<<<<<<< HEAD
 
+=======
+nmslnmsl
+>>>>>>> 57675d46de3908b3bcc0fca0ff3f19bb5213fbd1
 run_game()
