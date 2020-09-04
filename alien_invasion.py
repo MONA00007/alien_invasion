@@ -28,5 +28,5 @@ def run_game():
         # 让最近绘制的屏幕可见
         gf.update_screen(ai_settings, screen, ship, bullets)
 
-
+nmsl
 run_game()
