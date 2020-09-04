@@ -14,6 +14,7 @@ def run_game():
         (ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption('Alien Invasion')
 
+    s
     # 创建一艘飞船和子弹组
     ship = Ship(ai_settings, screen)
     alien = Alien(ai_settings, screen)
