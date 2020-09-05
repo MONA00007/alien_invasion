@@ -1,6 +1,5 @@
-class GameState():
+class GameStats():
     # *记录跟踪游戏统计信息
-
     def __init__(self, ai_settings):
         # 初始化统计信息
         self.ai_settings = ai_settings

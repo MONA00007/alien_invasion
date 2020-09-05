@@ -3,7 +3,7 @@ from pygame.sprite import Sprite
 
 
 class Bullet(Sprite):
-    # 对子弹管理的类
+    # * 对子弹管理的类
 
     def __init__(self, ai_settings, screen, ship):
         # 在飞船处创建一个子弹对象
