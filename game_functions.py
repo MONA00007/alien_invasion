@@ -123,3 +123,12 @@ def get_number_rows(ai_settings, ship_height, alien_height):
                         (3 * alien_height) - ship_height)
     number_rows = int(avaiable_space_y / (2 * alien_height))
     return number_rows
+
+
+def update_aliens(aliens):
+    # 更新外星人群的设置
+    aliens.update()
+
+
+def change_fleet_direction(ai_settings, aliens):
+    # 将外星人群下移，并改变方向
