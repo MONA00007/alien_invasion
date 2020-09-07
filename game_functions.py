@@ -1,5 +1,5 @@
 import sys
-
+import json
 import pygame
 from bullet import Bullet
 from alien import Alien
@@ -17,7 +17,7 @@ def check_keydown_events(event, ai_settings, screen, stats, sb, ship, aliens,
         # 创建一个子弹，并将其加入到bullets编组中(少于限制数量内)
         fire_bullet(ai_settings, screen, ship, bullets)
     elif event.key == pygame.K_q:
-        sys.exit()
+        end_game(ai_settings, stats)
     elif event.key == pygame.K_p and not stats.game_active:
         start_game(ai_settings, screen, stats, sb, ship, aliens, bullets)
 
@@ -49,7 +49,7 @@ def check_events(ai_settings, screen, stats, sb, play_button, ship, aliens,
     for event in pygame.event.get():
         # 关闭游戏事件
         if event.type == pygame.QUIT:
-            sys.exit()
+            end_game(ai_settings, stats)
         # 键盘左右移动事件
         elif event.type == pygame.KEYDOWN:
             check_keydown_events(event, ai_settings,
@@ -253,3 +253,19 @@ def check_high_score(stats, sb):
     if stats.score > stats.high_score:
         stats.high_score = stats.score
         sb.prep_high_score()
+
+
+def end_game(ai_settings, stats):
+    # 保存最高分并结束游戏
+    try:
+        with open(ai_settings.high_score_path) as file_object:
+            high_score = json.load(file_object)
+    except FileNotFoundError:
+        with open(ai_settings.high_score_path, 'w') as file_object:
+            json.dump(stats.high_score, file_object)
+    else:
+        if high_score < stats.high_score:
+            with open(ai_settings.high_score_path, 'w') as file_object:
+                high_score = stats.high_score
+                json.dump(high_score, file_object)
+    sys.exit()
