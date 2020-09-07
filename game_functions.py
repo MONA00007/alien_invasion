@@ -63,7 +63,7 @@ def check_events(ai_settings, screen, stats, play_button, ship, aliens,
                               aliens, bullets, mouse_x, mouse_y)
 
 
-def update_screen(ai_settings, screen, stats, ship, aliens, bullets,
+def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets,
                   play_button):
     # *更新屏幕上的图像，并切换到新屏幕
     # 每次循环时都重绘屏幕
@@ -73,26 +73,34 @@ def update_screen(ai_settings, screen, stats, ship, aliens, bullets,
         bullet.draw_bullet()
     ship.blitme()
     aliens.draw(screen)
+    # 显示得分
+    sb.show_score()
     if not stats.game_active:
         play_button.draw_button()
     # 让最近绘制的屏幕可见
     pygame.display.flip()
 
 
-def update_bullets(ai_settings, screen, ship, aliens, bullets):
+def update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets):
     # * 更新子弹的位置和删除消失的子弹
     bullets.update()
     # 删除消失的子弹
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
-    check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets)
+    check_bullet_alien_collisions(
+        ai_settings, screen, stats, sb, ship, aliens, bullets)
 
 
-def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
+def check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens,
+                                  bullets):
     # *检查是否有外星人被子弹击中
     # *击中则删除子弹和外星人
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+    if collisions:
+        for aliens in collisions.values():
+            stats.score += ai_settings.alien_points*len(aliens)
+            sb.prep_score()
 
     # 如果外星人被消灭完则再新建一群外星人,并加速
     if len(aliens) == 0:
