@@ -45,5 +45,5 @@ class Ship():
         '''
 
     def center_ship(self):
-        # 飞船屏幕居中
+        # * 飞船屏幕居中
         self.center = self.screen_rect.centerx
