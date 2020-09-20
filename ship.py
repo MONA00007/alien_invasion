@@ -19,10 +19,9 @@ class Ship(Sprite):
         # 移动标志
         self.moving_right = False
         self.moving_left = False
-        '''
+        # 上下移动
         self.moving_up = False
         self.moving_down = False
-        '''
 
         # 将每艘新飞船放在屏幕底部中央
         self.rect.centerx = self.screen_rect.centerx
@@ -39,12 +38,11 @@ class Ship(Sprite):
         if self.moving_left and self.rect.left > 0:
             self.center -= self.ai_settings.ship_speed_factor
         self.rect.centerx = self.center
-        '''
+        # 上下移动
         if self.moving_up:
             self.rect.centery -= 1
         if self.moving_down:
             self.rect.centery += 1
-        '''
 
     def center_ship(self):
         # * 飞船屏幕居中

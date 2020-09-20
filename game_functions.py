@@ -21,12 +21,11 @@ def check_keydown_events(event, ai_settings, screen, stats, sb, ship, aliens,
     elif event.key == pygame.K_p and not stats.game_active:
         start_game(ai_settings, screen, stats, sb, ship, aliens, bullets)
 
-    '''
+    # 上下移动
     elif event.key == pygame.K_UP:
         ship.moving_up = True
     elif event.key == pygame.K_DOWN:
         ship.moving_down = True
-    '''
 
 
 def check_keyup_events(event, ship):
@@ -35,12 +34,11 @@ def check_keyup_events(event, ship):
         ship.moving_right = False
     elif event.key == pygame.K_LEFT:
         ship.moving_left = False
-    '''
+    # 上下移动
     elif event.key == pygame.K_UP:
         ship.moving_up = False
     elif event.key == pygame.K_DOWN:
         ship.moving_down = False
-    '''
 
 
 def check_events(ai_settings, screen, stats, sb, play_button, ship, aliens,
