@@ -15,6 +15,7 @@ class Settings():
         self.bullets_allowed = 20
         # 外星人设置
         self.fleet_drop_speed = 10
+        self.high_score_path = 'high_score.json'
 
         # 加快游戏节奏并加高奖励
         self.speedup_scale = 1.1
