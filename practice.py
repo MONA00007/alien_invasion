@@ -1,8 +1,15 @@
-alien_colors = ['green', 'yellow', 'blue']
-for alien_color in alien_colors:
-    if alien_color == 'green':
-        print("5")
-    elif alien_color == 'blue':
-        print('18')
-    else:
-        print('7')
+pets = {
+    'D': {
+        'name': 'DD',
+        'type': 'dog'
+    },
+    'M': {
+        'name': 'MM',
+        'type': 'cat'
+    }
+}
+for pet_name, info in pets.items():
+    print(pet_name + ':')
+    for key, value in info.items():
+        print('name is ' + key)
+        print('type is ' + value)
